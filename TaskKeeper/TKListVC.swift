@@ -10,7 +10,7 @@ import UIKit
 
 class TKListVC: UITableViewController {
   
-  let cellIdentifier = "TKListCell"
+  let reuseIdentifier = "TKListCell"
   var items: [TKItem]
   
   required init?(coder aDecoder: NSCoder) {
@@ -58,7 +58,7 @@ class TKListVC: UITableViewController {
   
   override func tableView(tableView: UITableView,
     cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-      let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier,
+      let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier,
         forIndexPath: indexPath)
       let item = items[indexPath.row]
       configureTextForCell(cell, withItem: item)
@@ -90,18 +90,6 @@ class TKListVC: UITableViewController {
     label.text = item.text
   }
   
-  @IBAction func addButtonTouched(sender: UIBarButtonItem) {
-    let newRowIndex = items.count
-    let item = TKItem()
-    item.text = "I am a new row"
-    item.isComplete = true
-    items.append(item)
-    
-    let indexPath = NSIndexPath(forItem: newRowIndex, inSection: 0)
-    let indexPaths = [indexPath]
-    tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
-  }
-  
   override func tableView(tableView: UITableView,
     commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
       items.removeAtIndex(indexPath.row)
@@ -109,11 +97,3 @@ class TKListVC: UITableViewController {
       tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
   }
 }
-
-
-
-
-
-
-
-

@@ -13,6 +13,7 @@
 		9602BE631BF54E9B0037504F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9602BE621BF54E9B0037504F /* Assets.xcassets */; };
 		9602BE661BF54E9B0037504F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9602BE641BF54E9B0037504F /* LaunchScreen.storyboard */; };
 		9602BE701BF55EE30037504F /* TKItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9602BE6F1BF55EE30037504F /* TKItem.swift */; };
+		9626018F1BF808E50099CF7B /* TKCreateTaskVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9626018E1BF808E50099CF7B /* TKCreateTaskVC.swift */; };
 		A820CE134A560D7B4CA6015E /* Pods_TaskKeeper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31D03C70D7DC4AABDECA72B2 /* Pods_TaskKeeper.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 		9602BE651BF54E9B0037504F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9602BE671BF54E9B0037504F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9602BE6F1BF55EE30037504F /* TKItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TKItem.swift; sourceTree = "<group>"; };
+		9626018E1BF808E50099CF7B /* TKCreateTaskVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TKCreateTaskVC.swift; sourceTree = "<group>"; };
 		B5489E4C4F29200A7254C214 /* Pods-TaskKeeper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskKeeper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaskKeeper/Pods-TaskKeeper.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				9602BE5D1BF54E9B0037504F /* TKListVC.swift */,
+				9626018E1BF808E50099CF7B /* TKCreateTaskVC.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 			files = (
 				9602BE701BF55EE30037504F /* TKItem.swift in Sources */,
 				9602BE5E1BF54E9B0037504F /* TKListVC.swift in Sources */,
+				9626018F1BF808E50099CF7B /* TKCreateTaskVC.swift in Sources */,
 				9602BE5C1BF54E9B0037504F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

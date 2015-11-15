@@ -43,7 +43,7 @@
                     <navigationItem key="navigationItem" title="All Tasks" id="VTv-iS-Yga">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="jOY-cv-ryo">
                             <connections>
-                                <segue destination="WlZ-Fn-2vn" kind="presentation" identifier="ShowTKCreateTaskVC" modalPresentationStyle="pageSheet" modalTransitionStyle="coverVertical" id="1XY-wj-4ii"/>
+                                <segue destination="sap-bc-bpd" kind="presentation" identifier="ShowTKCreateTaskVC" modalPresentationStyle="pageSheet" modalTransitionStyle="coverVertical" id="1XY-wj-4ii"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -55,34 +55,57 @@
         <!--Create Task-->
         <scene sceneID="bzS-6a-bIA">
             <objects>
-                <tableViewController id="WlZ-Fn-2vn" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="3zP-qS-T85">
+                <tableViewController modalPresentationStyle="currentContext" id="WlZ-Fn-2vn" customClass="TKCreateTaskVC" customModule="TaskKeeper" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="3zP-qS-T85">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TKCreateTaskCell" id="YQC-dp-aj4">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YQC-dp-aj4" id="g59-LR-zDp">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <animations/>
-                                </tableViewCellContentView>
-                                <animations/>
-                            </tableViewCell>
-                        </prototypes>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <sections>
+                            <tableViewSection id="cIM-CT-R8H">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TKCreateTaskCell" id="YQC-dp-aj4">
+                                        <rect key="frame" x="0.0" y="79" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YQC-dp-aj4" id="g59-LR-zDp">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Task" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="Atm-gt-XOr">
+                                                    <rect key="frame" x="8" y="6" width="584" height="30"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="18"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes" keyboardAppearance="light" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                </textField>
+                                            </subviews>
+                                            <animations/>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
                         <connections>
                             <outlet property="dataSource" destination="WlZ-Fn-2vn" id="HKf-7T-ML7"/>
                             <outlet property="delegate" destination="WlZ-Fn-2vn" id="0cW-lM-6Jn"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Create Task" id="4Yp-cu-rck"/>
+                    <navigationItem key="navigationItem" title="Create Task" id="4Yp-cu-rck">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Ay5-Ho-u5X">
+                            <connections>
+                                <action selector="cancelButtonTouched:" destination="WlZ-Fn-2vn" id="yWc-ui-b9H"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="RmU-b4-G0x">
+                            <connections>
+                                <action selector="doneButtonTouched:" destination="WlZ-Fn-2vn" id="LBk-oi-Vhu"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="un4-RW-gkJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1874" y="222"/>
+            <point key="canvasLocation" x="1871" y="918"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Zj7-tP-ToY">
@@ -105,6 +128,28 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="meE-sr-8iA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="557" y="222"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="3Jw-HP-qOD">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sap-bc-bpd" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aba-kx-Ugd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="CourierNewPS-BoldMT" family="Courier New" pointSize="16"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="WlZ-Fn-2vn" kind="relationship" relationship="rootViewController" id="gZt-0h-b5k"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aXm-In-Ejo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1215" y="918"/>
         </scene>
     </scenes>
 </document>
