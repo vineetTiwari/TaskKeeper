@@ -10,9 +10,9 @@ import Foundation
 
 class TKItem: NSObject {
   var text = ""
-  var isComplete = false
+  var checked = false
   
   func toggelCompilationStatus() {
-    isComplete = !isComplete
+    checked = !checked
   }
 }
