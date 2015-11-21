@@ -14,35 +14,9 @@ class TKListVC: UITableViewController, TKItemDetailVCDelegate {
   var items: [TKItem]
   
   required init?(coder aDecoder: NSCoder) {
-    
     items = [TKItem]()
-    
-    let row0item = TKItem()
-    row0item.text = "Walk the dog"
-    row0item.checked = false
-    items.append(row0item)
-    
-    let row1item = TKItem()
-    row1item.text = "Brush my teeth"
-    row1item.checked = false
-    items.append(row1item)
-    
-    let row2item = TKItem()
-    row2item.text = "Learn iOS development"
-    row2item.checked = true
-    items.append(row2item)
-    
-    let row3item = TKItem()
-    row3item.text = "Football practice"
-    row3item.checked = false
-    items.append(row3item)
-    
-    let row4item = TKItem()
-    row4item.text = "Eat ice cream"
-    row4item.checked = true
-    items.append(row4item)
-    
     super.init(coder: aDecoder)
+    loadTKItems()
   }
   
   // MARK: - Table view data source -
@@ -74,6 +48,7 @@ class TKListVC: UITableViewController, TKItemDetailVCDelegate {
         configureCheckmarkForCell(cell, withTKItem: item)
       }
       tableView.deselectRowAtIndexPath(indexPath, animated: true)
+      saveTKItem()
   }
   
   override func tableView(tableView: UITableView,
@@ -81,6 +56,7 @@ class TKListVC: UITableViewController, TKItemDetailVCDelegate {
       items.removeAtIndex(indexPath.row)
       let indexPaths = [indexPath]
       tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+      saveTKItem()
   }
   
   func configureTextForCell(cell: UITableViewCell, withTKItem item:TKItem) {
@@ -107,6 +83,7 @@ class TKListVC: UITableViewController, TKItemDetailVCDelegate {
     let indexPaths = [indexPath]
     tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
     dismissViewControllerAnimated(true, completion: nil)
+    saveTKItem()
   }
   
   func tKitemDetailVC(controller: TKItemDetailVC, didFinishEditingItem item: TKItem) {
@@ -117,6 +94,7 @@ class TKListVC: UITableViewController, TKItemDetailVCDelegate {
       }
     }
     dismissViewControllerAnimated(true, completion: nil)
+    saveTKItem()
   }
   
   func tKItemDetailVCDidCancel(controller: TKItemDetailVC) {
@@ -135,6 +113,36 @@ class TKListVC: UITableViewController, TKItemDetailVCDelegate {
       controller.delegate = self
       if let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) {
         controller.itemToEdit = items[indexPath.row]
+      }
+    }
+  }
+  
+  // MASK: - DataStorage -
+  func documentsDirectory() -> String {
+    let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+    
+    return paths[0]
+  }
+  
+  func dataFilePath() -> String {
+    return (documentsDirectory() as NSString).stringByAppendingPathComponent("TasKeeper.plist")
+  }
+  
+  func saveTKItem() {
+    let data = NSMutableData()
+    let archiver = NSKeyedArchiver(forWritingWithMutableData: data)
+    archiver.encodeObject(items, forKey: "TKItems")
+    archiver.finishEncoding()
+    data.writeToFile(dataFilePath(), atomically: true)
+  }
+  
+  func loadTKItems() {
+    let path = dataFilePath()
+    if NSFileManager.defaultManager().fileExistsAtPath(path) {
+      if let data = NSData(contentsOfFile: path) {
+        let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
+        items = unarchiver.decodeObjectForKey("TKItems") as! [TKItem]
+        unarchiver.finishDecoding()
       }
     }
   }

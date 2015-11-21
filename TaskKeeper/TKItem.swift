@@ -8,11 +8,27 @@
 
 import Foundation
 
-class TKItem: NSObject {
+class TKItem: NSObject, NSCoding {
   var text = ""
   var checked = false
   
   func toggelCompilationStatus() {
     checked = !checked
+  }
+  
+  override init() {
+    super.init()
+  }
+  
+  //MARK: - NSCoderDelegate -
+  func encodeWithCoder(aCoder: NSCoder) {
+    aCoder.encodeObject(text, forKey: "Text")
+    aCoder.encodeBool(checked, forKey: "Checked")
+  }
+
+  required init?(coder aDecoder: NSCoder) {
+    text = aDecoder.decodeObjectForKey("Text") as! String
+    checked = aDecoder.decodeBoolForKey("Checked")
+    super.init()
   }
 }
