@@ -17,6 +17,7 @@ class TKListVC: UITableViewController, TKItemDetailVCDelegate {
     items = [TKItem]()
     super.init(coder: aDecoder)
     loadTKItems()
+    print("Data file path is:\(dataFilePath())")
   }
   
   // MARK: - Table view data source -
