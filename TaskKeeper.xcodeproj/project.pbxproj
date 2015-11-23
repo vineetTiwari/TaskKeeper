@@ -8,12 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		9602BE5C1BF54E9B0037504F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9602BE5B1BF54E9B0037504F /* AppDelegate.swift */; };
-		9602BE5E1BF54E9B0037504F /* TKListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9602BE5D1BF54E9B0037504F /* TKListVC.swift */; };
+		9602BE5E1BF54E9B0037504F /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9602BE5D1BF54E9B0037504F /* ListViewController.swift */; };
 		9602BE611BF54E9B0037504F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9602BE5F1BF54E9B0037504F /* Main.storyboard */; };
 		9602BE631BF54E9B0037504F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9602BE621BF54E9B0037504F /* Assets.xcassets */; };
 		9602BE661BF54E9B0037504F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9602BE641BF54E9B0037504F /* LaunchScreen.storyboard */; };
-		9602BE701BF55EE30037504F /* TKItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9602BE6F1BF55EE30037504F /* TKItem.swift */; };
-		9626018F1BF808E50099CF7B /* TKItemDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9626018E1BF808E50099CF7B /* TKItemDetailVC.swift */; };
+		9602BE701BF55EE30037504F /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9602BE6F1BF55EE30037504F /* ListItem.swift */; };
+		9626018F1BF808E50099CF7B /* ListItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9626018E1BF808E50099CF7B /* ListItemDetailViewController.swift */; };
+		969883621C0040C70032F3F4 /* AllListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969883611C0040C70032F3F4 /* AllListsViewController.swift */; };
+		969883641C01371A0032F3F4 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969883631C01371A0032F3F4 /* List.swift */; };
+		969883661C01649E0032F3F4 /* ListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969883651C01649E0032F3F4 /* ListDetailViewController.swift */; };
 		A820CE134A560D7B4CA6015E /* Pods_TaskKeeper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31D03C70D7DC4AABDECA72B2 /* Pods_TaskKeeper.framework */; };
 /* End PBXBuildFile section */
 
@@ -22,13 +25,16 @@
 		4251A104BB3C1E95BED15558 /* Pods-TaskKeeper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskKeeper.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaskKeeper/Pods-TaskKeeper.release.xcconfig"; sourceTree = "<group>"; };
 		9602BE581BF54E9B0037504F /* TaskKeeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskKeeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9602BE5B1BF54E9B0037504F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9602BE5D1BF54E9B0037504F /* TKListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TKListVC.swift; sourceTree = "<group>"; };
+		9602BE5D1BF54E9B0037504F /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		9602BE601BF54E9B0037504F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9602BE621BF54E9B0037504F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9602BE651BF54E9B0037504F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9602BE671BF54E9B0037504F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9602BE6F1BF55EE30037504F /* TKItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TKItem.swift; sourceTree = "<group>"; };
-		9626018E1BF808E50099CF7B /* TKItemDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TKItemDetailVC.swift; sourceTree = "<group>"; };
+		9602BE6F1BF55EE30037504F /* ListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
+		9626018E1BF808E50099CF7B /* ListItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListItemDetailViewController.swift; sourceTree = "<group>"; };
+		969883611C0040C70032F3F4 /* AllListsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllListsViewController.swift; sourceTree = "<group>"; };
+		969883631C01371A0032F3F4 /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
+		969883651C01649E0032F3F4 /* ListDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListDetailViewController.swift; sourceTree = "<group>"; };
 		B5489E4C4F29200A7254C214 /* Pods-TaskKeeper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskKeeper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaskKeeper/Pods-TaskKeeper.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,8 +99,10 @@
 		9602BE711BF55F970037504F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				9602BE5D1BF54E9B0037504F /* TKListVC.swift */,
-				9626018E1BF808E50099CF7B /* TKItemDetailVC.swift */,
+				969883611C0040C70032F3F4 /* AllListsViewController.swift */,
+				969883651C01649E0032F3F4 /* ListDetailViewController.swift */,
+				9602BE5D1BF54E9B0037504F /* ListViewController.swift */,
+				9626018E1BF808E50099CF7B /* ListItemDetailViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -102,7 +110,8 @@
 		9602BE721BF55FA70037504F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				9602BE6F1BF55EE30037504F /* TKItem.swift */,
+				969883631C01371A0032F3F4 /* List.swift */,
+				9602BE6F1BF55EE30037504F /* ListItem.swift */,
 				9602BE5B1BF54E9B0037504F /* AppDelegate.swift */,
 			);
 			name = Models;
@@ -155,7 +164,7 @@
 		9602BE501BF54E9B0037504F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = TK;
+				CLASSPREFIX = "";
 				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Vineet Tiwari";
@@ -250,10 +259,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9602BE701BF55EE30037504F /* TKItem.swift in Sources */,
-				9602BE5E1BF54E9B0037504F /* TKListVC.swift in Sources */,
-				9626018F1BF808E50099CF7B /* TKItemDetailVC.swift in Sources */,
+				9602BE701BF55EE30037504F /* ListItem.swift in Sources */,
+				969883661C01649E0032F3F4 /* ListDetailViewController.swift in Sources */,
+				9602BE5E1BF54E9B0037504F /* ListViewController.swift in Sources */,
+				9626018F1BF808E50099CF7B /* ListItemDetailViewController.swift in Sources */,
+				969883621C0040C70032F3F4 /* AllListsViewController.swift in Sources */,
 				9602BE5C1BF54E9B0037504F /* AppDelegate.swift in Sources */,
+				969883641C01371A0032F3F4 /* List.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

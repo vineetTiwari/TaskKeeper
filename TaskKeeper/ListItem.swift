@@ -1,5 +1,5 @@
 //
-//  TKItem.swift
+//  ListItem.swift
 //  TaskKeeper
 //
 //  Created by Vineet Tiwari on 11/12/15.
@@ -8,7 +8,9 @@
 
 import Foundation
 
-class TKItem: NSObject, NSCoding {
+class ListItem: NSObject, NSCoding {
+  
+  // MARK: - General -
   var text = ""
   var checked = false
   
@@ -20,15 +22,16 @@ class TKItem: NSObject, NSCoding {
     super.init()
   }
   
-  //MARK: - NSCoderDelegate -
+  //MARK: - Coding Delegate -
   func encodeWithCoder(aCoder: NSCoder) {
     aCoder.encodeObject(text, forKey: "Text")
     aCoder.encodeBool(checked, forKey: "Checked")
   }
-
+  
   required init?(coder aDecoder: NSCoder) {
     text = aDecoder.decodeObjectForKey("Text") as! String
     checked = aDecoder.decodeBoolForKey("Checked")
     super.init()
   }
+  
 }
