@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AllListsViewController: UITableViewController, ListDetailViewControllerDelegate {
+class AllListsViewController: UITableViewController, ListDetailViewControllerDelegate, UINavigationControllerDelegate {
   
   // MARK: - General -
   let font = UIFont(name: "HelveticaNeue-Light", size: 20.0)
@@ -16,6 +16,17 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
   let AddSegue = "AddList"
   var dataModel: DataModel!
   let listDetailNavController = "ListDetailNavController"
+  
+  // MARK: - ViewController LifeCycle - 
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+    navigationController?.delegate = self
+    let index = dataModel.listIndex
+    if index >= 0 && index < dataModel.lists.count {
+      let list = dataModel.lists[index]
+      performSegueWithIdentifier(ShowSegue, sender: list)
+    }
+  }
   
   // MARK: - TableView DataSource -
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -41,6 +52,7 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
   }
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    dataModel.listIndex = indexPath.row
     let list = dataModel.lists[indexPath.row]
     performSegueWithIdentifier(ShowSegue, sender: list)
   }
@@ -96,6 +108,13 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
       }
     }
     dismissViewControllerAnimated(true, completion: nil)
+  }
+  
+  // MARK: - NavigationController Delegate - 
+  func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
+    if viewController === self {
+      dataModel.listIndex = -1
+    }
   }
   
 }

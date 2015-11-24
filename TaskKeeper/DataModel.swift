@@ -12,9 +12,24 @@ class DataModel {
   
   // MARK: - General -
   var lists = [List]()
+  let defaults = NSUserDefaults.standardUserDefaults()
+  let listKey = "selectedListIndex"
+  let firstTime = "firstTime"
+  
+  var listIndex: Int {
+    get {
+      return defaults.integerForKey(listKey)
+    }
+    set {
+      defaults.setInteger(newValue, forKey: listKey)
+      defaults.synchronize()
+    }
+  }
   
   init() {
     loadLists()
+    regesterDefaults()
+    handleFirstTime()
   }
   
   // MARK: - Key/Value Archiving -
@@ -46,4 +61,22 @@ class DataModel {
     }
   }
   
+  // MARK: - Setup UserDefault -
+  func regesterDefaults() {
+    let registerationDictionary = [ listKey: -1,
+                                  firstTime: true ]
+    defaults.registerDefaults(registerationDictionary)
+  }
+  
+  // MARK: - Error Hangling -
+  func handleFirstTime() {
+    let isFirstTime = defaults.boolForKey(firstTime)
+    if isFirstTime {
+      let defaultList = List(name: "List")
+      lists.append(defaultList)
+      listIndex = 0
+      defaults.setBool(false, forKey: firstTime)
+      defaults.synchronize()
+    }
+  }
 }
