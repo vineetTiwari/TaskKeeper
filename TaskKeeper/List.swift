@@ -12,6 +12,7 @@ class List: NSObject, NSCoding {
   
   // MARK: - General -
   var name = ""
+  var items = [ListItem]()
   
   init(name: String) {
     self.name = name
@@ -21,10 +22,12 @@ class List: NSObject, NSCoding {
   //MARK: - Coding Delegate -
   func encodeWithCoder(aCoder: NSCoder) {
     aCoder.encodeObject(name, forKey: "Name")
+    aCoder.encodeObject(items, forKey: "Items")
   }
   
   required init?(coder aDecoder: NSCoder) {
     name = aDecoder.decodeObjectForKey("Name") as! String
+    items = aDecoder.decodeObjectForKey("Items") as! [ListItem]
     super.init()
   }
   

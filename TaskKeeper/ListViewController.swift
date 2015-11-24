@@ -14,14 +14,8 @@ class ListViewController: UITableViewController, ListItemDetailViewControllerDel
   let ItemCell = "ListItemCell"
   let AddSegue = "AddItem"
   let EditSegue = "EditItem"
-  var items: [ListItem]
   var list: List!
-  
-  required init?(coder aDecoder: NSCoder) {
-    items = [ListItem]()
-    super.init(coder: aDecoder)
-    loadListItems()
-  }
+  var items = [ListItem]()
   
   // MARK: - ViewController LifeCycle -
   override func viewDidLoad() {
@@ -36,14 +30,14 @@ class ListViewController: UITableViewController, ListItemDetailViewControllerDel
   // MARK: - TableView DataSource -
   override func tableView(tableView: UITableView,
     numberOfRowsInSection section: Int) -> Int {
-      return items.count
+      return list.items.count
   }
   
   override func tableView(tableView: UITableView,
     cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
       let cell = tableView.dequeueReusableCellWithIdentifier(ItemCell,
         forIndexPath: indexPath)
-      let item = items[indexPath.row]
+      let item = list.items[indexPath.row]
       configureTextForCell(cell, withListItem: item)
       configureCheckmarkForCell(cell, withListItem: item)
       return cell
@@ -52,20 +46,18 @@ class ListViewController: UITableViewController, ListItemDetailViewControllerDel
   override func tableView(tableView: UITableView,
     didSelectRowAtIndexPath indexPath: NSIndexPath) {
       if let cell = tableView.cellForRowAtIndexPath(indexPath) {
-        let item = items[indexPath.row]
+        let item = list.items[indexPath.row]
         item.toggelCompilationStatus()
         configureCheckmarkForCell(cell, withListItem: item)
       }
       tableView.deselectRowAtIndexPath(indexPath, animated: true)
-      saveListItem()
   }
   
   override func tableView(tableView: UITableView,
     commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-      items.removeAtIndex(indexPath.row)
+      list.items.removeAtIndex(indexPath.row)
       let indexPaths = [indexPath]
       tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
-      saveListItem()
   }
   
   // MARK: - Setup Cell -
@@ -95,7 +87,7 @@ class ListViewController: UITableViewController, ListItemDetailViewControllerDel
       let controller = navigationController.topViewController as! ListItemDetailViewController
       controller.delegate = self
       if let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) {
-        controller.itemToEdit = items[indexPath.row]
+        controller.itemToEdit = list.items[indexPath.row]
       }
     }
   }
@@ -106,53 +98,22 @@ class ListViewController: UITableViewController, ListItemDetailViewControllerDel
   }
   
   func listItemDetailViewController(controller: ListItemDetailViewController, didFinishAddingItem item: ListItem) {
-    let newRowIndex = items.count
-    items.append(item)
+    let newRowIndex = list.items.count
+    list.items.append(item)
     let indexPath = NSIndexPath(forRow: newRowIndex, inSection: 0)
     let indexPaths = [indexPath]
     tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
     dismissViewControllerAnimated(true, completion: nil)
-    saveListItem()
   }
   
   func listItemDetailViewController(controller: ListItemDetailViewController, didFinishEditingItem item: ListItem) {
-    if let index = items.indexOf(item) {
+    if let index = list.items.indexOf(item) {
       let indexPath = NSIndexPath(forRow: index, inSection: 0)
       if let cell = tableView.cellForRowAtIndexPath(indexPath) {
         self.configureTextForCell(cell, withListItem: item)
       }
     }
     dismissViewControllerAnimated(true, completion: nil)
-    saveListItem()
-  }
-  
-  // MARK: - Key/Value Archiving -
-  func documentsDirectory() -> String {
-    let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-    return paths[0]
-  }
-  
-  func dataFilePath() -> String {
-    return (documentsDirectory() as NSString).stringByAppendingPathComponent("TasKeeper.plist")
-  }
-  
-  func saveListItem() {
-    let data = NSMutableData()
-    let archiver = NSKeyedArchiver(forWritingWithMutableData: data)
-    archiver.encodeObject(items, forKey: "ListItems")
-    archiver.finishEncoding()
-    data.writeToFile(dataFilePath(), atomically: true)
-  }
-  
-  func loadListItems() {
-    let path = dataFilePath()
-    if NSFileManager.defaultManager().fileExistsAtPath(path) {
-      if let data = NSData(contentsOfFile: path) {
-        let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
-        items = unarchiver.decodeObjectForKey("ListItems") as! [ListItem]
-        unarchiver.finishDecoding()
-      }
-    }
   }
   
 }
