@@ -198,8 +198,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "
-";
+			shellScript = "";
 			showEnvVarsInLog = 0;
 		};
 		66224E38365FA869C084630B /* Embed Pods Frameworks */ = {
@@ -214,8 +213,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "
-";
+			shellScript = "";
 			showEnvVarsInLog = 0;
 		};
 		8B91CD209054D6E950D96784 /* Check Pods Manifest.lock */ = {
@@ -230,8 +228,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "
-";
+			shellScript = "";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

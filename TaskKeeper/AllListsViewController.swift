@@ -11,13 +11,18 @@ import UIKit
 class AllListsViewController: UITableViewController, ListDetailViewControllerDelegate, UINavigationControllerDelegate {
   
   // MARK: - General -
-  let font = UIFont(name: "HelveticaNeue-Light", size: 20.0)
+  let textFont = UIFont(name: "HelveticaNeue-Light", size: 20.0)
+  let detailTextFont = UIFont(name: "HelveticaNeue-Light", size: 12.0)
   let ShowSegue = "ShowList"
   let AddSegue = "AddList"
   var dataModel: DataModel!
   let listDetailNavController = "ListDetailNavController"
   
   // MARK: - ViewController LifeCycle - 
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    tableView.reloadData()
+  }
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(animated)
     navigationController?.delegate = self
@@ -36,8 +41,9 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = cellForTableView(tableView)
     let list = dataModel.lists[indexPath.row]
-    cell.textLabel!.font = font
-    cell.textLabel!.text = list.name
+    setupTextLabelsForCell(cell.textLabel!,
+      andDetailTextLabel: cell.detailTextLabel!,
+      withList: list)
     cell.accessoryType = .DetailButton
     return cell
   }
@@ -47,7 +53,7 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
     if let cell = tableView.dequeueReusableCellWithIdentifier(ListCell) {
       return cell
     } else {
-      return UITableViewCell(style: .Default, reuseIdentifier: ListCell)
+      return UITableViewCell(style: .Subtitle, reuseIdentifier: ListCell)
     }
   }
   
@@ -61,6 +67,21 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
     dataModel.lists.removeAtIndex(indexPath.row)
     let indexPaths = [indexPath]
     tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+  }
+  
+  // MARK: - Setup Cell -
+  func setupTextLabelsForCell(textLabel: UILabel, andDetailTextLabel detailTextLabel: UILabel, withList list: List) {
+    textLabel.font = textFont
+    detailTextLabel.font = detailTextFont
+    textLabel.text = list.name
+    let count = list.countUncheckedItems()
+    if list.items.count == 0 {
+      detailTextLabel.text = "(No Items)"
+    } else if count == 0 {
+      detailTextLabel.text = "All Done!"
+    } else {
+      detailTextLabel.text = "\(count) Remaining"
+    }
   }
   
   // MARK: - TableView Delegate -

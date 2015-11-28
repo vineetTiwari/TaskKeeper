@@ -19,7 +19,12 @@ class List: NSObject, NSCoding {
     super.init()
   }
   
-  //MARK: - Coding Delegate -
+  // Function: For counting the number of unchecked ListItems
+  func countUncheckedItems() -> Int {
+    return items.reduce(0) { tempCount, item in tempCount + (item.checked ? 0 : 1) }
+  }
+  
+  // MARK: - NSCoder Delegate -
   func encodeWithCoder(aCoder: NSCoder) {
     aCoder.encodeObject(name, forKey: "Name")
     aCoder.encodeObject(items, forKey: "Items")

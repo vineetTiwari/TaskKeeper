@@ -161,7 +161,7 @@
         <!--Main NavController-->
         <scene sceneID="Zj7-tP-ToY">
             <objects>
-                <navigationController title="Main NavController" automaticallyAdjustsScrollViewInsets="NO" hidesBarsOnSwipe="YES" id="4qv-Kd-xIA" sceneMemberID="viewController">
+                <navigationController title="Main NavController" automaticallyAdjustsScrollViewInsets="NO" id="4qv-Kd-xIA" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bV6-WY-jPP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -189,7 +189,7 @@
         <!--ItemDetail NavController-->
         <scene sceneID="3Jw-HP-qOD">
             <objects>
-                <navigationController title="ItemDetail NavController" automaticallyAdjustsScrollViewInsets="NO" hidesBarsOnSwipe="YES" id="sap-bc-bpd" sceneMemberID="viewController">
+                <navigationController title="ItemDetail NavController" automaticallyAdjustsScrollViewInsets="NO" id="sap-bc-bpd" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aba-kx-Ugd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -276,7 +276,7 @@
         <!--ListDetail NavController-->
         <scene sceneID="SAR-ra-I5J">
             <objects>
-                <navigationController storyboardIdentifier="ListDetailNavController" title="ListDetail NavController" hidesBarsOnSwipe="YES" id="hmk-aQ-o4Q" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ListDetailNavController" title="ListDetail NavController" id="hmk-aQ-o4Q" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0NM-g4-4SB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

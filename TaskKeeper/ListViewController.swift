@@ -16,7 +16,7 @@ class ListViewController: UITableViewController, ListItemDetailViewControllerDel
   let EditSegue = "EditItem"
   var list: List!
   var items = [ListItem]()
-  
+    
   // MARK: - ViewController LifeCycle -
   override func viewDidLoad() {
     super.viewDidLoad()
