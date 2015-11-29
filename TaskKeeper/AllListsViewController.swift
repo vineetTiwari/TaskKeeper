@@ -23,6 +23,7 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
     super.viewWillAppear(animated)
     tableView.reloadData()
   }
+  
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(animated)
     navigationController?.delegate = self
@@ -41,9 +42,7 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = cellForTableView(tableView)
     let list = dataModel.lists[indexPath.row]
-    setupTextLabelsForCell(cell.textLabel!,
-      andDetailTextLabel: cell.detailTextLabel!,
-      withList: list)
+    setupCell(cell, forItem: list)
     cell.accessoryType = .DetailDisclosureButton
     return cell
   }
@@ -70,17 +69,18 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
   }
   
   // MARK: - Setup Cell -
-  func setupTextLabelsForCell(textLabel: UILabel, andDetailTextLabel detailTextLabel: UILabel, withList list: List) {
-    textLabel.font = textFont
-    detailTextLabel.font = detailTextFont
-    textLabel.text = list.name
+  func setupCell(cell: UITableViewCell, forItem list: List) {
+    cell.textLabel!.font = textFont
+    cell.detailTextLabel!.font = detailTextFont
+    cell.textLabel!.text = list.name
+    cell.imageView!.image = UIImage(named: list.iconName)
     let count = list.countUncheckedItems()
     if list.items.count == 0 {
-      detailTextLabel.text = "(No Items)"
+      cell.detailTextLabel!.text = "(No Items)"
     } else if count == 0 {
-      detailTextLabel.text = "All Done!"
+      cell.detailTextLabel!.text = "All Done!"
     } else {
-      detailTextLabel.text = "\(count) Remaining"
+      cell.detailTextLabel!.text = "\(count) Remaining"
     }
   }
   
@@ -113,7 +113,6 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
   }
   
   func listDetailViewController(controller: ListDetailViewController, didFinishAddingList list: List) {
-    
     dataModel.lists.append(list)
     dataModel.sortLists()
     tableView.reloadData()
@@ -121,7 +120,6 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
   }
   
   func listDetailViewController(controller: ListDetailViewController, didFinishEditingList list: List) {
-    
     dataModel.sortLists()
     tableView.reloadData()
     dismissViewControllerAnimated(true, completion: nil)

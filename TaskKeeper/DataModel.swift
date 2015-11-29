@@ -73,7 +73,7 @@ class DataModel {
   func handleFirstTime() {
     let isFirstTime = defaults.boolForKey(firstTime)
     if isFirstTime {
-      let defaultList = List(name: "List")
+      let defaultList = List(name: "List", iconName: "Tasks")
       lists.append(defaultList)
       listIndex = 0
       defaults.setBool(false, forKey: firstTime)

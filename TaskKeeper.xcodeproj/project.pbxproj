@@ -18,6 +18,7 @@
 		969883641C01371A0032F3F4 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969883631C01371A0032F3F4 /* List.swift */; };
 		969883661C01649E0032F3F4 /* ListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969883651C01649E0032F3F4 /* ListDetailViewController.swift */; };
 		9698836C1C0411900032F3F4 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9698836B1C04118F0032F3F4 /* DataModel.swift */; };
+		96E8982C1C0ABF5C00AD61BE /* IconPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E8982B1C0ABF5C00AD61BE /* IconPickerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		969883631C01371A0032F3F4 /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		969883651C01649E0032F3F4 /* ListDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListDetailViewController.swift; sourceTree = "<group>"; };
 		9698836B1C04118F0032F3F4 /* DataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		96E8982B1C0ABF5C00AD61BE /* IconPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconPickerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,10 +79,8 @@
 		9602BE711BF55F970037504F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				969883611C0040C70032F3F4 /* AllListsViewController.swift */,
-				969883651C01649E0032F3F4 /* ListDetailViewController.swift */,
-				9602BE5D1BF54E9B0037504F /* ListViewController.swift */,
-				9626018E1BF808E50099CF7B /* ListItemDetailViewController.swift */,
+				96E898291C0ABF0300AD61BE /* AllLists */,
+				96E8982A1C0ABF1600AD61BE /* ListItems */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -112,6 +112,25 @@
 				9602BE671BF54E9B0037504F /* Info.plist */,
 			);
 			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		96E898291C0ABF0300AD61BE /* AllLists */ = {
+			isa = PBXGroup;
+			children = (
+				969883611C0040C70032F3F4 /* AllListsViewController.swift */,
+				969883651C01649E0032F3F4 /* ListDetailViewController.swift */,
+				96E8982B1C0ABF5C00AD61BE /* IconPickerViewController.swift */,
+			);
+			name = AllLists;
+			sourceTree = "<group>";
+		};
+		96E8982A1C0ABF1600AD61BE /* ListItems */ = {
+			isa = PBXGroup;
+			children = (
+				9602BE5D1BF54E9B0037504F /* ListViewController.swift */,
+				9626018E1BF808E50099CF7B /* ListItemDetailViewController.swift */,
+			);
+			name = ListItems;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,6 +260,7 @@
 				9602BE701BF55EE30037504F /* ListItem.swift in Sources */,
 				969883661C01649E0032F3F4 /* ListDetailViewController.swift in Sources */,
 				9602BE5E1BF54E9B0037504F /* ListViewController.swift in Sources */,
+				96E8982C1C0ABF5C00AD61BE /* IconPickerViewController.swift in Sources */,
 				9626018F1BF808E50099CF7B /* ListItemDetailViewController.swift in Sources */,
 				969883621C0040C70032F3F4 /* AllListsViewController.swift in Sources */,
 				9698836C1C0411900032F3F4 /* DataModel.swift in Sources */,

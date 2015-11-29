@@ -10,9 +10,13 @@ import UIKit
 
 // MARK: - Protpcol -
 protocol ListItemDetailViewControllerDelegate : class {
+  
   func listItemDetailViewControllerDidCancel(controller: ListItemDetailViewController)
+  
   func listItemDetailViewController(controller: ListItemDetailViewController, didFinishAddingItem item: ListItem)
+  
   func listItemDetailViewController(controller: ListItemDetailViewController, didFinishEditingItem item: ListItem)
+  
 }
 
 class ListItemDetailViewController: UITableViewController, UITextFieldDelegate {
