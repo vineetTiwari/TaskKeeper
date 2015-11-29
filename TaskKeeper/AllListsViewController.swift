@@ -44,7 +44,7 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
     setupTextLabelsForCell(cell.textLabel!,
       andDetailTextLabel: cell.detailTextLabel!,
       withList: list)
-    cell.accessoryType = .DetailButton
+    cell.accessoryType = .DetailDisclosureButton
     return cell
   }
   
@@ -113,21 +113,17 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
   }
   
   func listDetailViewController(controller: ListDetailViewController, didFinishAddingList list: List) {
-    let newRowIndex = dataModel.lists.count
+    
     dataModel.lists.append(list)
-    let indexPath = NSIndexPath(forRow: newRowIndex, inSection: 0)
-    let indexPaths = [indexPath]
-    tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+    dataModel.sortLists()
+    tableView.reloadData()
     dismissViewControllerAnimated(true, completion: nil)
   }
   
   func listDetailViewController(controller: ListDetailViewController, didFinishEditingList list: List) {
-    if let index = dataModel.lists.indexOf(list) {
-      let indexPath = NSIndexPath(forRow: index, inSection: 0)
-      if let cell = tableView.cellForRowAtIndexPath(indexPath) {
-        cell.textLabel!.text = list.name as String
-      }
-    }
+    
+    dataModel.sortLists()
+    tableView.reloadData()
     dismissViewControllerAnimated(true, completion: nil)
   }
   

@@ -57,6 +57,7 @@ class DataModel {
         let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
         lists = unarchiver.decodeObjectForKey("Lists") as! [List]
         unarchiver.finishDecoding()
+        sortLists()
       }
     }
   }
@@ -64,7 +65,7 @@ class DataModel {
   // MARK: - Setup UserDefault -
   func regesterDefaults() {
     let registerationDictionary = [ listKey: -1,
-                                  firstTime: true ]
+      firstTime: true ]
     defaults.registerDefaults(registerationDictionary)
   }
   
@@ -79,4 +80,12 @@ class DataModel {
       defaults.synchronize()
     }
   }
+  
+  // MARK: - Sort AllList -
+  func sortLists() {
+    lists.sortInPlace({ (list1, list2) in
+      return list1.name.localizedStandardCompare(list2.name) == .OrderedAscending
+    })
+  }
+  
 }
