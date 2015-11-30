@@ -14,7 +14,7 @@ class ListItem: NSObject, NSCoding {
   var text = ""
   var checked = false
   
-  func toggelCompilationStatus() {
+  func toggelCompletionStatus() {
     checked = !checked
   }
   

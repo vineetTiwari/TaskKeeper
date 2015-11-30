@@ -47,14 +47,15 @@ class ListViewController: UITableViewController, ListItemDetailViewControllerDel
     didSelectRowAtIndexPath indexPath: NSIndexPath) {
       if let cell = tableView.cellForRowAtIndexPath(indexPath) {
         let item = list.items[indexPath.row]
-        item.toggelCompilationStatus()
+        item.toggelCompletionStatus()
         configureCheckmarkForCell(cell, withListItem: item)
       }
-      tableView.deselectRowAtIndexPath(indexPath, animated: true)
+//      tableView.deselectRowAtIndexPath(indexPath, animated: true)
   }
   
   override func tableView(tableView: UITableView,
-    commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    commitEditingStyle editingStyle: UITableViewCellEditingStyle,
+    forRowAtIndexPath indexPath: NSIndexPath) {
       list.items.removeAtIndex(indexPath.row)
       let indexPaths = [indexPath]
       tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
@@ -67,11 +68,11 @@ class ListViewController: UITableViewController, ListItemDetailViewControllerDel
   }
   
   func configureCheckmarkForCell(cell: UITableViewCell, withListItem item: ListItem) {
-    let label = cell.viewWithTag(10102) as! UILabel
+    let circleImageView = cell.viewWithTag(10102) as! UIImageView
     if item.checked {
-      label.text = "√"
+      circleImageView.highlighted = true
     } else {
-      label.text = ""
+      circleImageView.highlighted = false
     }
   }
   

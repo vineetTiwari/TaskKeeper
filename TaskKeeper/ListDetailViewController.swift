@@ -41,8 +41,10 @@ class ListDetailViewController: UITableViewController, UITextFieldDelegate, Icon
       textField.text = list.name
       iconName = list.iconName
       doneButton.enabled = true
+      iconImageView?.image = UIImage(named: iconName)
+    } else {
+      iconImageView?.image = UIImage(named: "Tasks")
     }
-    iconImageView?.image = UIImage(named: iconName)
   }
   
   override func viewWillAppear(animated: Bool) {
