@@ -24,6 +24,10 @@ class ListItemDetailViewController: UITableViewController, UITextFieldDelegate {
   // MARK: - General -
   @IBOutlet weak var textField: UITextField!
   @IBOutlet weak var doneButton: UIBarButtonItem!
+  @IBOutlet weak var shouldRemind: UISwitch!
+  @IBOutlet weak var dueDateLabel: UILabel!
+  var dueDate = NSDate()
+  var datePickerVisible = false
   
   weak var delegate: ListItemDetailViewControllerDelegate?
   var itemToEdit: ListItem?
@@ -32,9 +36,12 @@ class ListItemDetailViewController: UITableViewController, UITextFieldDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     if let item = itemToEdit {
-      title = "Edit Item"
-      textField.text = item.text
-      doneButton.enabled = true
+      setupCellWithItem(item)
+//      title = "Edit Item"
+//      textField.text = item.text
+//      doneButton.enabled = true
+//      shouldRemind.on = item.shouldRemind
+//      dueDate = item.dueDate
     }
   }
   
@@ -52,11 +59,15 @@ class ListItemDetailViewController: UITableViewController, UITextFieldDelegate {
   @IBAction func doneTouched() {
     if let item = itemToEdit {
       item.text = textField.text!
+      item.shouldRemind = shouldRemind.on
+      item.dueDate = dueDate
       delegate?.listItemDetailViewController(self, didFinishEditingItem: item)
     } else {
       let item = ListItem()
       item.text = textField.text!
       item.checked = false
+      item.shouldRemind = shouldRemind.on
+      item.dueDate = dueDate
       delegate?.listItemDetailViewController(self, didFinishAddingItem: item)
     }
   }
@@ -71,6 +82,27 @@ class ListItemDetailViewController: UITableViewController, UITextFieldDelegate {
     let newText: NSString = oldText.stringByReplacingCharactersInRange(range, withString: string)
     doneButton.enabled = (newText.length > 0)
     return true
+  }
+  
+  // MARK: - Setup Cell For EditingMode -
+  func setupCellWithItem(item: ListItem) {
+    title = "Edit Item"
+    textField.text = item.text
+    doneButton.enabled = true
+    shouldRemind.on = item.shouldRemind
+    dueDate = item.dueDate
+  }
+  
+  func updateDueDate() {
+    let formatter = NSDateFormatter()
+    formatter.dateStyle = .MediumStyle
+    formatter.timeStyle = .ShortStyle
+  }
+  
+  func showDatePicker() {
+    datePickerVisible = true
+    let indexPathDatePicker = NSIndexPath(forRow: 2, inSection: 1)
+    tableView.insertRowsAtIndexPaths([indexPathDatePicker], withRowAnimation: .Fade)
   }
   
 }

@@ -72,7 +72,7 @@ class ListDetailViewController: UITableViewController, UITextFieldDelegate, Icon
       list.iconName = iconName
       delegate?.listDetailViewController(self, didFinishEditingList: list)
     } else {
-      let list = List(name: textField.text!, iconName: iconName)
+      let list = List(name: textField.text!, iconName: "Tasks")
       delegate?.listDetailViewController(self, didFinishAddingList: list)
     }
   }

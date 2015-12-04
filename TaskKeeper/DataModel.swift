@@ -65,7 +65,7 @@ class DataModel {
   // MARK: - Setup UserDefault -
   func regesterDefaults() {
     let registerationDictionary = [ listKey: -1,
-      firstTime: true ]
+      firstTime: true, "ItemID": 0 ]
     defaults.registerDefaults(registerationDictionary)
   }
   
@@ -86,6 +86,15 @@ class DataModel {
     lists.sortInPlace({ (list1, list2) in
       return list1.name.localizedStandardCompare(list2.name) == .OrderedAscending
     })
+  }
+  
+  // MARK: - Assign NextItemID -
+  class func nextItemID() -> Int {
+    let userDefaults = NSUserDefaults.standardUserDefaults()
+    let itemID = userDefaults.integerForKey("ItemID")
+    userDefaults.setInteger(itemID + 1 , forKey: "ItemID")
+    userDefaults.synchronize()
+    return itemID
   }
   
 }

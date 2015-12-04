@@ -16,7 +16,7 @@ class ListViewController: UITableViewController, ListItemDetailViewControllerDel
   let EditSegue = "EditItem"
   var list: List!
   var items = [ListItem]()
-    
+  
   // MARK: - ViewController LifeCycle -
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -50,7 +50,6 @@ class ListViewController: UITableViewController, ListItemDetailViewControllerDel
         item.toggelCompletionStatus()
         configureCheckmarkForCell(cell, withListItem: item)
       }
-//      tableView.deselectRowAtIndexPath(indexPath, animated: true)
   }
   
   override func tableView(tableView: UITableView,
@@ -64,7 +63,8 @@ class ListViewController: UITableViewController, ListItemDetailViewControllerDel
   // MARK: - Setup Cell -
   func configureTextForCell(cell: UITableViewCell, withListItem item:ListItem) {
     let label = cell.viewWithTag(10101) as! UILabel
-    label.text = item.text
+//    label.text = item.text
+    label.text = "\(item.itemID): \(item.text)"
   }
   
   func configureCheckmarkForCell(cell: UITableViewCell, withListItem item: ListItem) {
