@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class ListItem: NSObject, NSCoding {
   
@@ -16,6 +17,7 @@ class ListItem: NSObject, NSCoding {
   var dueDate = NSDate()
   var shouldRemind = false
   var itemID: Int
+  var application = UIApplication.sharedApplication()
   
   func toggelCompletionStatus() {
     checked = !checked
@@ -42,6 +44,42 @@ class ListItem: NSObject, NSCoding {
     aCoder.encodeObject(dueDate, forKey: "DueDate")
     aCoder.encodeInteger(itemID, forKey: "ItemID")
     aCoder.encodeBool(shouldRemind, forKey: "ShouldRemind")
+  }
+  
+  // MARK: - Local Notification -
+  func scheduleLocalNotification() {
+    let currentDate = NSDate()
+    if let notification = currentItemNotifiction() {
+      print("Found existing notification: \(notification)")
+      application.cancelLocalNotification(notification)
+    }
+    if shouldRemind && dueDate.compare(currentDate) != .OrderedAscending {
+      let localNotification = UILocalNotification()
+      localNotification.fireDate = dueDate
+      localNotification.timeZone = NSTimeZone.defaultTimeZone()
+      localNotification.alertBody = text
+      localNotification.soundName = UILocalNotificationDefaultSoundName
+      localNotification.userInfo = ["ItemID" : itemID]
+      application.scheduleLocalNotification(localNotification)
+      print("Scheduled Notification: \(localNotification)\nItemID: \(itemID)")
+    }
+  }
+  
+  func currentItemNotifiction() -> UILocalNotification? {
+    let allNotifications = application.scheduledLocalNotifications!
+    for notification in allNotifications {
+      if let tempItemID = notification.userInfo?["ItemID"] as? Int where tempItemID == itemID {
+          return notification
+      }
+    }
+    return nil
+  }
+  
+  deinit {
+    if let notification = currentItemNotifiction() {
+      print("Removing notification: \(notification)")
+      application.cancelLocalNotification(notification)
+    }
   }
   
 }

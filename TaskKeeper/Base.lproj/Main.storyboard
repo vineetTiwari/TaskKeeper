@@ -173,6 +173,9 @@
                                                     <rect key="frame" x="536" y="6" width="51" height="31"/>
                                                     <animations/>
                                                     <color key="onTintColor" red="0.98431372549999996" green="0.18039215689999999" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="shouldRemindtoggled:" destination="WlZ-Fn-2vn" eventType="valueChanged" id="vnW-gm-B1T"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <animations/>
@@ -234,6 +237,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="datePicker" destination="a0x-97-ncb" id="l3D-d5-OfE"/>
+                        <outlet property="datePicketCell" destination="l1E-ir-5mf" id="rT5-xN-Jpd"/>
                         <outlet property="doneButton" destination="RmU-b4-G0x" id="yER-V0-0E5"/>
                         <outlet property="dueDateLabel" destination="7Cp-Oi-WVW" id="NPV-21-U7L"/>
                         <outlet property="shouldRemind" destination="Lli-4L-cgM" id="unP-np-zht"/>
@@ -241,6 +246,34 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="un4-RW-gkJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="l1E-ir-5mf">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="217"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="l1E-ir-5mf" id="zsw-bZ-AOw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="216.5"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="a0x-97-ncb">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="216"/>
+                                <animations/>
+                                <date key="date" timeIntervalSinceReferenceDate="470979419.76801598">
+                                    <!--2015-12-05 03:36:59 +0000-->
+                                </date>
+                                <connections>
+                                    <action selector="dateChanged:" destination="WlZ-Fn-2vn" eventType="valueChanged" id="8pb-OO-aov"/>
+                                </connections>
+                            </datePicker>
+                        </subviews>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="a0x-97-ncb" secondAttribute="bottom" id="5n6-sj-aKg"/>
+                            <constraint firstAttribute="trailing" secondItem="a0x-97-ncb" secondAttribute="trailing" id="9Bw-RZ-YkY"/>
+                            <constraint firstItem="a0x-97-ncb" firstAttribute="top" secondItem="zsw-bZ-AOw" secondAttribute="top" id="GK0-wa-cDn"/>
+                            <constraint firstItem="a0x-97-ncb" firstAttribute="leading" secondItem="zsw-bZ-AOw" secondAttribute="leading" id="XRs-g9-Hih"/>
+                        </constraints>
+                    </tableViewCellContentView>
+                    <animations/>
+                </tableViewCell>
             </objects>
             <point key="canvasLocation" x="2673" y="928"/>
         </scene>
