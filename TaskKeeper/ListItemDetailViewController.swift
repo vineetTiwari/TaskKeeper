@@ -27,12 +27,18 @@ class ListItemDetailViewController: UITableViewController, UITextFieldDelegate {
   @IBOutlet weak var shouldRemind: UISwitch!
   @IBOutlet weak var dueDateLabel: UILabel!
   @IBOutlet weak var datePicketCell: UITableViewCell!
+  /*
+  @IBOutlet weak var dateLabelCell: UITableViewCell!
+  */
   @IBOutlet weak var datePicker: UIDatePicker!
   
   var itemToEdit: ListItem?
   var dueDate = NSDate()
   let currentDate = NSDate()
   var datePickerVisible = false
+  /*
+  var dateLabelVisible = false
+  */
   var application = UIApplication.sharedApplication()
   
   weak var delegate: ListItemDetailViewControllerDelegate?
@@ -57,6 +63,15 @@ class ListItemDetailViewController: UITableViewController, UITextFieldDelegate {
   // MARK: - TableView DataSource -
   override func tableView(tableView: UITableView,
     numberOfRowsInSection section: Int) -> Int {
+      /*
+      if section == 1 && dateLabelVisible {
+        if datePickerVisible {
+          return 3
+        } else {
+          return 2
+        }
+      }
+      */
       if section == 1 && datePickerVisible {
         return 3
       } else {
@@ -67,6 +82,13 @@ class ListItemDetailViewController: UITableViewController, UITextFieldDelegate {
   
   override func tableView(tableView: UITableView,
     cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+      /*
+      if indexPath.section == 1 && indexPath.row == 1 {
+        return dateLabelCell
+      } else if indexPath.section == 1 && indexPath.row == 2 {
+        return datePicketCell
+      }
+      */
       if indexPath.section == 1 && indexPath.row == 2 {
         return datePicketCell
       } else {
@@ -107,13 +129,20 @@ class ListItemDetailViewController: UITableViewController, UITextFieldDelegate {
   
   override func tableView(tableView: UITableView,
     var indentationLevelForRowAtIndexPath indexPath: NSIndexPath) -> Int {
+      /*
+      if indexPath.section == 1 && indexPath.row == 1 {
+        indexPath = NSIndexPath(forRow: 0, inSection: indexPath.section)
+      } else if indexPath.section == 1 && indexPath.row == 2 {
+        indexPath = NSIndexPath(forRow: 0, inSection: indexPath.section)
+      }
+      */
       if indexPath.section == 1 && indexPath.row == 2 {
         indexPath = NSIndexPath(forRow: 0, inSection: indexPath.section)
       }
       return super.tableView(tableView, indentationLevelForRowAtIndexPath: indexPath)
   }
   
-  // MARK: - EditView Setup -
+  // MARK: - View Setup -
   func setupCellWithItem(item: ListItem) {
     title = "Edit Item"
     textField.text = item.text
@@ -157,6 +186,15 @@ class ListItemDetailViewController: UITableViewController, UITextFieldDelegate {
     if reminderActivationSwitch.on {
       let userNotificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil)
       application.registerUserNotificationSettings(userNotificationSettings)
+    /*
+      if !dateLabelVisible {
+        showDateLabel()
+      }
+    } else {
+      if datelabelVisible {
+        hideDateLabel()
+      }
+    */
     }
   }
   
@@ -173,6 +211,24 @@ class ListItemDetailViewController: UITableViewController, UITextFieldDelegate {
       hideDatePicker()
     }
   }
+  
+  /*
+  // MARK: - DateLabel -
+  func showDateLabel() {
+    dateLabelVisible = true
+    let indexPathDateRow = NSIndexPath(forRow: 1, inSection: 1)
+    tableView.insertRowsAtIndexPaths([indexPathDateRow], withRowAnimation: .Fade)
+  }
+  
+  func hideDateLabel() {
+    dateLabelVisible = false
+    let indexPathDateRow = NSIndexPath(forRow: 1, inSection: 1)
+    if datePickerVisible {
+      hideDatePicker()
+    }
+    tableView.deleteRowsAtIndexPaths([indexPathDateRow], withRowAnimation: .Fade)
+  }
+  */
   
   // MARK: - DatePicker -
   func updateDueDate() {
